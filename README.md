@@ -3,7 +3,7 @@
 
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://static.vecteezy.com/system/resources/previews/014/007/786/original/python-logo-icon-design-illustration-vector.jpg" alt="Markdownify" width="200"></a>
+  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://icons8.com/icon/87063/snake" alt="Markdownify" width="200"></a>
   <br>
   Markdownify
   <br>
