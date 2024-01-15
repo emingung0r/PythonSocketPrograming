@@ -123,7 +123,7 @@ client_socket.close()
 ```
 <p>Bu kod, basit bir TCP istemcisini temsil eder. İstemci, belirli bir IP adresi ve port numarasına bağlanır ve kullanıcının girdiği mesajları sunucuya gönderir. Sunucudan gelen cevapları ekrana yazdırır. "quit" komutu girildiğinde, döngüden çıkılır ve bağlantı kapatılır.</p>
 
-####Kodun genel akışı şu şekildedir:
+<h4>Kodun genel akışı şu şekildedir:</h4> 
 
 * **_socket_** modülü kullanılarak bir TCP istemci soketi oluşturulur.
 * Belirtilen IP adresi ve port numarasına bağlanılır **_(client_socket.connect((host, port)))._**
