@@ -50,7 +50,7 @@
   - While you type, LivePreview will automatically scroll to the current location you're editing.
 * GitHub Flavored Markdown
 
-# Client Programlama
+### Client Programlama
 ```bash
 import socket
 import subprocess
