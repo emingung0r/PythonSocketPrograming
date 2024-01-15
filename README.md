@@ -48,46 +48,47 @@
   - Instantly see what your Markdown documents look like in HTML as you create them.
 * Sync Scrolling
   - While you type, LivePreview will automatically scroll to the current location you're editing.
-* GitHub Flavored Markdown  
+* GitHub Flavored Markdown
+
+# Client Programlama
 ```bash
 import socket
 import subprocess
 
+# Sunucu IP adresi ve port numarası
 host = '127.0.0.1'
 port = 4246
 
+# Socket oluştur ve belirtilen IP adresi ve port numarasına bağla
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind((host,port))
+server_socket.bind((host, port))
 server_socket.listen()
 
-conn,addr = server_socket.accept()
-print("connected from : "+str(addr))
+# Bağlantı kabul et
+conn, addr = server_socket.accept()
+print("Bağlantı yapıldı, Adres: " + str(addr))
 
-while True :
+# Sonsuz döngü ile bağlantıyı dinle
+while True:
+    # İstemciden gelen veriyi al
     data = conn.recv(1024).decode()
-    print(data)
+    print("Alınan veri: " + data)
 
-    result = subprocess.run(data,stdout=subprocess.PIPE, shell=True)
-    if(result.stdout.decode()!=""):
-        response_data=result.stdout
+    # Alınan komutu sistemde çalıştır
+    result = subprocess.run(data, stdout=subprocess.PIPE, shell=True)
+
+    # Komutun çıktısını al
+    if result.stdout.decode() != "":
+        response_data = result.stdout
     else:
-        response_data=("command executed").encode()
+        response_data = "Komut başarıyla çalıştırıldı".encode()
 
-
+    # Çıktıyı istemciye gönder
     conn.send(response_data)
+
+# Sonsuz döngüden çıkıldığında bağlantıyı kapat
 conn.close()
 
-# Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
-
-# Go into the repository
-$ cd electron-markdownify
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
 ```
 
 ## Ders 2
