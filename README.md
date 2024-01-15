@@ -50,7 +50,7 @@
   - While you type, LivePreview will automatically scroll to the current location you're editing.
 * GitHub Flavored Markdown
 
-### Client Programlama
+### Server Programlama
 ```bash
 import socket
 import subprocess
@@ -90,6 +90,50 @@ while True:
 conn.close()
 
 ```
+### Client Programlama
+
+```bash
+import socket
+
+# Sunucu IP adresi ve port numarası
+host = '127.0.0.1'
+port = 4246
+
+# Socket oluştur ve belirtilen IP adresi ve port numarasına bağlan
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect((host, port))
+
+# Kullanıcıdan alınan girişle sürekli dönen bir döngü
+while True:
+    message = input(">> ")  # Kullanıcıdan giriş alınır
+    if message.lower().strip() == "quit":
+        break  # Kullanıcı "quit" yazarsa döngüden çık
+
+    # Kullanıcının girdiği mesajı sunucuya gönder
+    client_socket.sendall(message.encode())  # Güvenilir gönderim için `sendall()` kullanılır
+
+    # Sunucudan gelen cevabı al
+    data = client_socket.recv(1024).decode()
+    print("Sunucudan gelen yanıt: " + data)  # Sunucudan gelen veriyi ekrana yazdırır
+
+# Döngüden çıkıldığında, bağlantıyı kapat
+client_socket.close()
+
+
+```
+<p>Bu kod, basit bir TCP istemcisini temsil eder. İstemci, belirli bir IP adresi ve port numarasına bağlanır ve kullanıcının girdiği mesajları sunucuya gönderir. Sunucudan gelen cevapları ekrana yazdırır. "quit" komutu girildiğinde, döngüden çıkılır ve bağlantı kapatılır.</p>
+
+####Kodun genel akışı şu şekildedir:
+
+* **_socket_** modülü kullanılarak bir TCP istemci soketi oluşturulur.
+* Belirtilen IP adresi ve port numarasına bağlanılır **_(client_socket.connect((host, port)))._**
+* Kullanıcıdan sürekli olarak giriş alınır **_(input(">> "))._**
+* Eğer kullanıcı "quit" yazarsa, döngüden çıkılır (_break_).
+* Kullanıcının girdiği mesaj sunucuya gönderilir **_ (client_socket.sendall(message.encode()))._**
+* Sunucudan gelen cevap alınır **_(data = client_socket.recv(1024).decode())._**
+* Sunucudan gelen veriyi ekrana yazdırır **_(print("Sunucudan gelen yanıt: " + data))._**
+* Döngü sürekli olarak devam eder, kullanıcı "quit" yazana kadar.
+* Döngüden çıkıldığında, bağlantı kapatılır **_(client_socket.close())._**
 
 ## Ders 2
 
