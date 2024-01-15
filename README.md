@@ -97,6 +97,20 @@ conn.close()
 ```
 ### Client Programlama
 
+<p>Bu kod, basit bir TCP istemcisini temsil eder. İstemci, belirli bir IP adresi ve port numarasına bağlanır ve kullanıcının girdiği mesajları sunucuya gönderir. Sunucudan gelen cevapları ekrana yazdırır. "quit" komutu girildiğinde, döngüden çıkılır ve bağlantı kapatılır.</p>
+
+<h4><u>Kodun genel akışı şu şekildedir:</u></h4> 
+
+* **_<u>socket</u>_** modülü kullanılarak bir TCP istemci soketi oluşturulur.
+* Belirtilen IP adresi ve port numarasına bağlanılır **_<u>(client_socket.connect((host, port))).</u>_**
+* Kullanıcıdan sürekli olarak giriş alınır **_<u>(input(">> ")).</u>_**
+* Eğer kullanıcı "quit" yazarsa, döngüden çıkılır <u>(_break_)</u>.
+* Kullanıcının girdiği mesaj sunucuya gönderilir **_<u>(client_socket.sendall(message.encode())).</u>_**
+* Sunucudan gelen cevap alınır **_<u>(data = client_socket.recv(1024).decode()).</u>_**
+* Sunucudan gelen veriyi ekrana yazdırır **_<u>(print("Sunucudan gelen yanıt: " + data)).</u>_**
+* Döngü sürekli olarak devam eder, kullanıcı "quit" yazana kadar.
+* Döngüden çıkıldığında, bağlantı kapatılır **_<u>(client_socket.close()).</u>_**
+
 ```bash
 import socket
 
@@ -126,19 +140,7 @@ client_socket.close()
 
 
 ```
-<p>Bu kod, basit bir TCP istemcisini temsil eder. İstemci, belirli bir IP adresi ve port numarasına bağlanır ve kullanıcının girdiği mesajları sunucuya gönderir. Sunucudan gelen cevapları ekrana yazdırır. "quit" komutu girildiğinde, döngüden çıkılır ve bağlantı kapatılır.</p>
 
-<h4><u>Kodun genel akışı şu şekildedir:</u></h4> 
-
-* **_<u>socket</u>_** modülü kullanılarak bir TCP istemci soketi oluşturulur.
-* Belirtilen IP adresi ve port numarasına bağlanılır **_<u>(client_socket.connect((host, port))).</u>_**
-* Kullanıcıdan sürekli olarak giriş alınır **_<u>(input(">> ")).</u>_**
-* Eğer kullanıcı "quit" yazarsa, döngüden çıkılır <u>(_break_)</u>.
-* Kullanıcının girdiği mesaj sunucuya gönderilir **_<u>(client_socket.sendall(message.encode())).</u>_**
-* Sunucudan gelen cevap alınır **_<u>(data = client_socket.recv(1024).decode()).</u>_**
-* Sunucudan gelen veriyi ekrana yazdırır **_<u>(print("Sunucudan gelen yanıt: " + data)).</u>_**
-* Döngü sürekli olarak devam eder, kullanıcı "quit" yazana kadar.
-* Döngüden çıkıldığında, bağlantı kapatılır **_<u>(client_socket.close()).</u>_**
 
 ## Ders 2
 
